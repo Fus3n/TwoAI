@@ -7,7 +7,7 @@ A simple experiment on letting two local LLM have a conversation about anything!
 
 ## Installation
 ```bash
-git clone https://github.com/fus3n/TwoAI
+git clone https://github.com/Fus3n/TwoAI
 cd TwoAI
 pip install -r requirements.txt
 python src/main.py
