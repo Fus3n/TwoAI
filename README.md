@@ -56,8 +56,8 @@ twoai = TWOAI(
     model=BASE_MODEL, 
     agent_details=agent_details, 
     system_prompt=sys_prompt
-    stop="<DONE!>",
-    max_stop_words=2,
+    exit_word="<DONE!>",
+    max_exit_words=2,
 )
 ```
 Now to get response there are two ways
