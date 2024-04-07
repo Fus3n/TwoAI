@@ -1,1 +1,3 @@
 .venv
+/src/__pycache__
+/src/twoai/__pycache__

@@ -1,6 +1,7 @@
 import ollama
 from colorama import Fore, Style
 from . import AgentDetails
+import sys
 
 class TWOAI:
     """
@@ -43,7 +44,7 @@ class TWOAI:
         self.max_exit_words = max_exit_words
 
     def bot_say(self, msg: str, color: str = Fore.LIGHTGREEN_EX):
-        print(color + msg.strip() + Style.RESET_ALL)
+        print(color + msg.strip() + "\t\t" + Style.RESET_ALL )
 
     def get_opposite_ai(self) -> AgentDetails:
         if self.current_agent['name'] == self.agent_details[0]['name']:
@@ -58,6 +59,12 @@ class TWOAI:
         result = result.replace("{other_name}", other_ai["name"])
         result = result.replace("{other_objective}", other_ai["objective"])
         return result
+
+    def __show_cursor(self):
+        print("\033[?25h", end="")
+
+    def __hide_cursor(self):
+        print('\033[?25l', end="")
 
     def next_response(self, show_output: bool = False) -> str:
         if len(self.agent_details) < 2:
@@ -74,6 +81,10 @@ class TWOAI:
         current_model = self.model
         if model := self.current_agent.get('model', None):
             current_model = model
+
+        if show_output:
+            self.__hide_cursor()
+            print(Fore.YELLOW + f"{self.current_agent['name']} is thinking..." + Style.RESET_ALL, end='\r')
 
         resp = ollama.generate(
             model=current_model, 
@@ -94,7 +105,11 @@ class TWOAI:
             }
         )
 
-        text: str = resp['response']
+        text: str = resp['response'].strip()
+        if not text:
+            print(Fore.RED + f"Error: {self.current_agent['name']} response was empty, trying again." + Style.RESET_ALL)
+            return self.next_response(show_output)
+
         if not text.startswith(self.current_agent['name'] + ": "):
             text = self.current_agent['name'] + ": " + text
         self.messages += text + "\n"
@@ -106,6 +121,7 @@ class TWOAI:
                 self.bot_say(text, Fore.BLUE)
         
         self.current_agent = self.get_opposite_ai()
+        self.__show_cursor()
         return text
 
     def start_conversation(self):
@@ -116,7 +132,9 @@ class TWOAI:
                     self.exit_word_count += 1
                 if self.exit_word_count == self.max_exit_words:
                     print(Fore.RED + "The conversation was concluded..." + Style.RESET_ALL)
+                    self.__show_cursor()
                     return
         except KeyboardInterrupt:
             print(Fore.RED + "Closing Conversation..." + Style.RESET_ALL)
+            self.__show_cursor()
             return
