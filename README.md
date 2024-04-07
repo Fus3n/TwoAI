@@ -6,6 +6,17 @@ A simple experiment on letting two local LLM have a conversation about anything!
 **[Another example](#section-1)**
 
 ## Installation
+
+First you need [Ollama](https://ollama.com/), install the executable as per the instructions.
+After that just make sure ollama is running in background, check your system tray.
+then find the model you like [https://ollama.com/library](https://ollama.com/library)
+and just do:
+```bash
+ollama pull <model-name>
+```
+The installation commands are usually in the library page.
+
+### Usage for TwoAI
 ```bash
 git clone https://github.com/Fus3n/TwoAI
 cd TwoAI
