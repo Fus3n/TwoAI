@@ -79,6 +79,8 @@ This is a simple test i did, obviously my objective and system prompt could be i
 
 #### Preview
 
+https://github.com/Fus3n/TwoAI/assets/52007265/58e71471-1c8c-445f-a3dc-b85b8627ff63
+
 #### System Prompt
 ```py
 sys_prompt = """
