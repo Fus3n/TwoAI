@@ -1,6 +1,10 @@
 # TWOAI
 A simple experiment on letting two local LLM have a conversation about anything!
 
+If you want to discuss more join the discord!
+
+[![Discord](https://img.shields.io/badge/Discord-R7TcKrQv?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/R7TcKrQv)
+
 <img src="images/demo-1.png"/>
 
 **[Another example](#section-1)**
