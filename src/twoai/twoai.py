@@ -1,7 +1,6 @@
-import ollama
 from colorama import Fore, Style
-from . import AgentDetails
-import sys
+from ollama import Client
+from . import AgentDetails, DEFAULT_HOST
 
 class TWOAI:
     """
@@ -82,10 +81,15 @@ class TWOAI:
         if model := self.current_agent.get('model', None):
             current_model = model
 
+        current_host = DEFAULT_HOST
+        if host := self.current_agent.get('host', None):
+            current_host = host
+
         if show_output:
             self.__hide_cursor()
             print(Fore.YELLOW + f"{self.current_agent['name']} is thinking..." + Style.RESET_ALL, end='\r')
-
+        
+        ollama = Client(host=current_host)
         resp = ollama.generate(
             model=current_model, 
             prompt=convo.strip(), 

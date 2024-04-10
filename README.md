@@ -47,7 +47,8 @@ agent_details: AgentDetails = (
         "name": "Zerkus",
         "objective": "Debate against the other AI on what came first, the chicken or the egg."
         "and you think the chicken came first."
-        "model": BASE_MODEL # this is optional, but here so you can use different models for different agent
+        "model": BASE_MODEL, # this is optional, but here so you can use different models for different agent
+        "host": "http://localhost:11434" # optional, so you can use multiple host machines for each model
     }, 
     {
         "name": "Nina",
