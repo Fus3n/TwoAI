@@ -1,6 +1,6 @@
 from colorama import Fore, Style
 from ollama import Client
-from . import AgentDetails, DEFAULT_HOST
+from . import AgentDetails, Agent, DEFAULT_HOST
 
 class TWOAI:
     """
@@ -45,12 +45,12 @@ class TWOAI:
     def bot_say(self, msg: str, color: str = Fore.LIGHTGREEN_EX):
         print(color + msg.strip() + "\t\t" + Style.RESET_ALL )
 
-    def get_opposite_ai(self) -> AgentDetails:
+    def get_opposite_ai(self) -> Agent:
         if self.current_agent['name'] == self.agent_details[0]['name']:
             return self.agent_details[1]
         return self.agent_details[0]
 
-    def __get_updated_template_str(self):
+    def get_updated_template_str(self):
         result = self.system_prompt.replace("{current_name}", self.current_agent['name'])
         result = result.replace("{current_objective}", self.current_agent['objective'])
 
@@ -70,7 +70,7 @@ class TWOAI:
             raise Exception("Not enough AI details provided")
 
         other_ai = self.get_opposite_ai()
-        instructions = self.__get_updated_template_str()
+        instructions = self.get_updated_template_str()
         convo = f"""
         {instructions}
 
@@ -103,6 +103,10 @@ class TWOAI:
                     "<|im_end|>",
                     "###",
                     "\r\n",
+                    "<|start_header_id|>",
+                    "<|end_header_id|>",
+                    "<|eot_id|>",
+                    "<|reserved_special_token",
                    f"{other_ai['name']}: " if self.current_agent['name'] != other_ai['name'] else f"{self.current_agent['name']}: "
                     
                 ] + self.extra_stops
@@ -119,6 +123,7 @@ class TWOAI:
         self.messages += text + "\n"
 
         if show_output:
+            print("\x1b[K", end="") # remove "thinking..." message
             if self.agent_details.index(self.current_agent) == 0:
                 self.bot_say(text)
             else:

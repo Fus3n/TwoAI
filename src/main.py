@@ -17,7 +17,6 @@ You will be having a converstaion with Another AI called {other_name}, and it's 
             "name": "Nina",
             "objective": "Debate against the other AI on what came first, the chicken or the egg."
             "and you think the Egg came first.",
-            "host": "https://da9b-123-253-65-158.ngrok-free.app",
         }
     )
     twoai = TWOAI(
