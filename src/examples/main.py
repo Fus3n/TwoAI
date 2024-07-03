@@ -2,7 +2,6 @@ from twoai import TWOAI, AgentDetails
 import sys
 
 if __name__ == "__main__":
-    # get arguemnts
     if len(sys.argv) > 1:
         BASE_MODEL = sys.argv[1]
     else:

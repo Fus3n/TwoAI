@@ -1,6 +1,5 @@
 from twoai import Agent, TWOAI, AgentDetails
 
-# run tests on twoai
 import unittest
 
 class TestTwoAI(unittest.TestCase):
@@ -13,7 +12,7 @@ class TestTwoAI(unittest.TestCase):
         self.assertEqual(agent.get('host', None), None)
 
     def test_twoai(self):
-        TEST_MODEL = "qwen2:1.5b" #CHOOSE MODEL
+        TEST_MODEL = "qwen2:1.5b" # CHOOSE YOUR MODEL
         sys_prompt = """You are {current_name}, you will talk to {other_name}. You will {current_objective}""".strip()
         agent_details: AgentDetails = (
             {
