@@ -1,9 +1,16 @@
 from twoai import TWOAI, AgentDetails
+import sys
 
 if __name__ == "__main__":
-    BASE_MODEL = "openhermes"
+    # get arguemnts
+    if len(sys.argv) > 1:
+        BASE_MODEL = sys.argv[1]
+    else:
+        print("Usage: python main.py <model_name>")
+        sys.exit(1)
+
     sys_prompt = """
-You are an AI Chatbot, you are an LLM, and your name is {current_name}, Now
+You are a very intelligent AI Chatbot, and your name is {current_name}, Now
 You will be having a converstaion with Another AI called {other_name}, and it's also same as you.
 {current_objective} And repeat "<DONE!>" ONLY if you both established and agreed that you came to the end of the discussion. 
 """.strip()

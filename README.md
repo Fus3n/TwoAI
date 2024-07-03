@@ -21,25 +21,28 @@ ollama pull <model-name>
 The installation commands are usually in the library page.
 
 ### Usage for TwoAI
+Example in `src/example/main.py`
+If you are using [pdm](https://github.com/pdm-project/pdm) you can install the package as with `pdm install` 
+
+- Manual
 ```bash
 git clone https://github.com/Fus3n/TwoAI
 cd TwoAI
 pip install -r requirements.txt
-python src/main.py
+python src/example/main.py llama3
+# with pdm
+pdm run example llama3
 ```
-
-### Demo
-This is not fully modularized yet, but there is a example in src/main.py 
 
 ```py
 # Setup
 
-BASE_MODEL = "openhermes" # need to be pulled first, `ollama pull openhermes`
+BASE_MODEL = "llama3" # need to be pulled first if you want to use this, `ollama pull llama3`
 
 sys_prompt = """
-You are an AI Chatbot, you are an LLM, and your name is {current_name}, Now
-You will be having a converstaion with Another AI called {other_name}, and its also same as you.
-{current_objective} Keep each message short and concise. And repeat "<DONE!>" ONLY if you both established and agreed that you came to the end of the discussion. 
+You are a very intelligent AI Chatbot and your name is {current_name}, Now
+you will be having a converstaion with another AI called {other_name}, and its also same as you.
+{current_objective} Keep each message short and concise and repeat "<DONE!>" ONLY if you both established and agreed that you came to the end of the discussion. 
 """.strip()
 
 agent_details: AgentDetails = (
@@ -129,13 +132,13 @@ agent_details: AgentDetails = (
         "name": "Zerkus",
         "objective": "Check the above code thoroughly for errors and debate and decide and fix the error if there was any with the other AI by collaborating and suggesting solutions."
         "Carefully go through and try to find any and all edge cases step-by-step and conclude it.",
-        "model": "openhermes"
+        "model": "llama3"
     }, 
     {
         "name": "Nina",
         "objective": "Check the above code thoroughly for errors and debate and decide and fix the error if there was any with the other AI by collaborating and suggesting solutions."
         "Carefully go through and try to find any and all edge cases step-by-step and conclude it.",
-        "model": "spooknik/kunoichi-dpo-v2-7b:q5_k_s"
+        "model": "gemma2"
     }
 )
 ```

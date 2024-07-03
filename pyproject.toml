@@ -1,0 +1,34 @@
+[project]
+name = "twoai"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "Fusen", email = "fus3ngames@gmail.com"},
+]
+dependencies = [
+    "anyio==4.3.0",
+    "certifi==2024.2.2",
+    "colorama==0.4.6",
+    "exceptiongroup==1.2.0",
+    "h11==0.14.0",
+    "httpcore==1.0.5",
+    "httpx==0.27.0",
+    "idna==3.6",
+    "ollama==0.1.8",
+    "sniffio==1.3.1",
+    "typing-extensions==4.11.0",
+]
+requires-python = ">=3.9"
+readme = "README.md"
+license = {text = "MIT"}
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+[tool.pdm.scripts]
+example = "python src/examples/main.py"
+test = "python -m unittest discover"
+
+[tool.pdm]
+distribution = true

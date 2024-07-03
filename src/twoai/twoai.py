@@ -115,7 +115,7 @@ class TWOAI:
 
         text: str = resp['response'].strip()
         if not text:
-            print(Fore.RED + f"Error: {self.current_agent['name']} response was empty, trying again." + Style.RESET_ALL)
+            print(Fore.RED + f"Error: {self.current_agent['name']} made an empty response, trying again." + Style.RESET_ALL)
             return self.next_response(show_output)
 
         if not text.startswith(self.current_agent['name'] + ": "):

@@ -1,3 +1,8 @@
 .venv
 /src/__pycache__
+/__pycache__
 /src/twoai/__pycache__
+/tests/__pycache__
+/.pdm-build
+.pdm-python
+/pdm.lock
